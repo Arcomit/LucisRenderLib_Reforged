@@ -1,0 +1,20 @@
+{
+  "package": "mod.arcomit.lucisrenderlib.mixin",
+  "refmap": "lucisrenderlib.refmap.json",
+  "plugin": "mod.arcomit.lucisrenderlib.mixin.MixinPlugin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "required": true,
+  "mixins": [
+  ],
+  "client": [
+    "ExtendedShaderAccessor",
+    "MixinExtendedShader"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
