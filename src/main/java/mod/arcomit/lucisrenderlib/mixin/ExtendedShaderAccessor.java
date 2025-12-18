@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
  * @CreateTime: 2025-11-21 12:10
  * @Description:  Mixin ExtendedShader，以提供私有对象获取方法
  */
-@Mixin(ExtendedShader. class)
+@Mixin(value = ExtendedShader. class, remap = false)
 public interface ExtendedShaderAccessor {
     @Accessor
     GlFramebuffer getWritingToBeforeTranslucent();

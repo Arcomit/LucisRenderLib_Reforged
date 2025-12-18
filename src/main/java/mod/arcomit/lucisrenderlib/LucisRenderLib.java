@@ -2,7 +2,6 @@ package mod.arcomit.lucisrenderlib;
 
 import com.mojang.logging.LogUtils;
 import mod.arcomit.lucisrenderlib.client.ClientConfig;
-import mod.arcomit.lucisrenderlib.example.init.LrParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,7 +28,6 @@ public class LucisRenderLib {
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
 
-        LrParticleTypes.register(modEventBus);
     }
 
     public static ResourceLocation prefix(String path) {

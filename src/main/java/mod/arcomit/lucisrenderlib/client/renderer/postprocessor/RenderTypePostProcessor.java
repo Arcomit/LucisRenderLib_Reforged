@@ -1,23 +1,14 @@
 package mod.arcomit.lucisrenderlib.client.renderer.postprocessor;
 
-import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
-import mod.arcomit.lucisrenderlib.builtin.init.ShaderMaterials;
 import mod.arcomit.lucisrenderlib.client.ClientConfig;
 import mod.arcomit.lucisrenderlib.client.renderer.pass.PostShader;
 import mod.arcomit.lucisrenderlib.client.renderer.rendertarget.HDRTarget;
 import mod.arcomit.lucisrenderlib.client.renderer.rendertarget.HDRTargetPool;
 import mod.arcomit.lucisrenderlib.client.util.IrisHelper;
 import mod.arcomit.lucisrenderlib.client.util.RenderStateHelper;
-import mod.arcomit.lucisrenderlib.example.ScreenshotCapture;
-import mod.arcomit.lucisrenderlib.example.init.LrRenderTypes;
-import mod.arcomit.lucisrenderlib.mixin.MixinExtendedShader;
 import net.minecraft.client.Minecraft;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @Author: Arcomit
@@ -52,13 +43,6 @@ public class RenderTypePostProcessor {
         if (ClientConfig.ENABLES_RENDER_TYPE_POST_PROCESSING.get()) {
             if (!IrisHelper.irisIsLoadedAndShaderPackon()) {
                 HDRTarget target = HDRTargetPool.acquireHDRTarget(HDR_TARGET_ID);
-
-                // 在后处理完成后截图，此时original FBO有完整内容
-                if (ScreenshotCapture.captureRequested) {
-                    ScreenshotCapture.exportCurrentRenderTarget();
-                    ScreenshotCapture.captureRequested = false;
-                }
-
                 target.unbindWrite();
 
                 GlStateManager._glBindFramebuffer(GL30.GL_FRAMEBUFFER, cachedFbo);

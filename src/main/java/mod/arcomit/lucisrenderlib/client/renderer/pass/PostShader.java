@@ -11,11 +11,12 @@ import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import org.joml.Matrix4f;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL14;
+import org.lwjgl.opengl.*;
 
 import java.io.IOException;
 import java.util.function.Consumer;
+
+import static org.lwjgl.opengl.GL30.GL_VERTEX_ARRAY_BINDING;
 
 /**
  * @Author: Arcomit
@@ -57,6 +58,7 @@ public class PostShader {
      * @param parameterSetter 用于设置shader参数的回调函数
      */
     public void draw(Consumer<EffectInstance> parameterSetter) {
+        int prevVao = GL11.glGetInteger(GL_VERTEX_ARRAY_BINDING);
         // 设置着色器参数
         RenderTarget previousTarget = Minecraft.getInstance().getMainRenderTarget();
         int prevViewportWidth = GlStateManager. Viewport.width();
@@ -117,6 +119,8 @@ public class PostShader {
         );
 
         this.effect.clear();
+
+        GL30.glBindVertexArray(prevVao);
     }
 
     /**
